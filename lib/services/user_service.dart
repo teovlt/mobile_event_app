@@ -5,7 +5,20 @@ class UserService {
   static final instance = FirebaseFirestore.instance;
   final userFirestore = instance.collection(userCollectionKey);
 
-  addUser({required String id, required Map<String, dynamic> data}) {
-    userFirestore.doc(id).set(data);
+  Future<void> addUser({
+    required String id,
+    required String name,
+    required String surname,
+    required String email,
+  }) async {
+    try {
+      await userFirestore.doc(id).set({
+        'name': name,
+        'surname': surname,
+        'email': email,
+      });
+    } catch (e) {
+      throw Exception('Failed to add user: $e');
+    }
   }
 }

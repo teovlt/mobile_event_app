@@ -16,7 +16,7 @@ class AuthService {
 
       return 'User signed in successfully';
     } on FirebaseAuthException catch (e) {
-      throw Exception('Failed to sign in: $e');
+      throw Exception(e.message);
     }
   }
 
@@ -32,12 +32,14 @@ class AuthService {
 
       await UserService().addUser(
         id: userCredential.user!.uid,
-        data: {'email': email, 'surname': surname, 'name': name},
+        name: name,
+        surname: surname,
+        email: email,
       );
 
       return 'User signed up successfully';
     } on FirebaseAuthException catch (e) {
-      throw Exception('Failed to sign up: $e');
+      throw Exception(e.message);
     }
   }
 
