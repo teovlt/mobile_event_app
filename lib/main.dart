@@ -1,5 +1,5 @@
 import 'package:app/pages/auth_page.dart';
-import 'package:app/pages/landing_page.dart';
+import 'package:app/pages/navigation_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -27,7 +27,7 @@ class MainApp extends StatelessWidget {
         stream: FirebaseAuth.instance.userChanges(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           return (snapshot.hasData)
-              ? const Center(child: LandingPage())
+              ? const Center(child: NavigationPage())
               : const Center(child: AuthPage());
         },
       ),
