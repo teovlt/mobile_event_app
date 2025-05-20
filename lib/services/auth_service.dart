@@ -51,8 +51,4 @@ class AuthService {
       throw Exception('Failed to logout: $e');
     }
   }
-
-  User? getCurrentUser() {
-    return instance.currentUser;
-  }
 }
